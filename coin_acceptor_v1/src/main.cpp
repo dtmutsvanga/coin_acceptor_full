@@ -39,7 +39,7 @@ void loop()
     digitalWrite(LED_GRN_PIN, HIGH);
     if (pulseIn(OPT_SENS_ENTRANCE, HIGH, OS_ENTRANCE_POLL_TIME) > 0)
     {
-      PRINT_LN("Coin Inserted");
+      PRINT_LN("\nCoin Inserted");
       state = STATE_READ_EM;
     }
     else
@@ -385,9 +385,9 @@ bool assess_values(unsigned long tme, int em)
     for (int i = 0; i < 10; i++)
     {
       digitalWrite(SOL_EM_PULSER, HIGH);
-      delay(EM_PULSE_PERIOD);
+      DELAY_EMP(EM_PULSE_PERIOD);
       digitalWrite(SOL_EM_PULSER, LOW);
-      delay(EM_PULSE_PERIOD);
+      DELAY_EMP(EM_PULSE_PERIOD);
     }
     unsigned long int ttl_val = 0;
     unsigned long int ctr = 0;
@@ -395,7 +395,7 @@ bool assess_values(unsigned long tme, int em)
     while (millis() - start_time < EM_MEASURE_TIME)
     {
       digitalWrite(SOL_EM_PULSER, ps);
-      delay(EM_PULSE_PERIOD);
+      DELAY_EMP(EM_PULSE_PERIOD);
       ttl_val += analogRead(SOL_EM_SENS);
       ctr++;
       //if (em_val < lo_em_val)
